@@ -1,16 +1,5 @@
-# flutter_faculdade_m2
+<img width=100% src="https://capsule-render.vercel.app/api?type=waving&color=000000&height=180&section=header&text=Desenvolvimento em Flutter Faculdade M2&fontSize=30&fontColor=00FF00&animation=twinkling&fontAlignY=35"/> 
 
-A new Flutter project.
+[![Typing SVG](https://readme-typing-svg.herokuapp.com/?color=00FF00&size=35&center=true&vCenter=true&width=1000&lines=Trabalho+em+Flutter;Desenvolvimento+de+uma+Aplicação+movel;com+as+funcionalidade+para+calculos!+:%29)](https://git.io/typing-svg)
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img width=100% src="https://capsule-render.vercel.app/api?type=waving&color=000000&height=180&section=header&text=Equipe: Gerson Gabriel | Gabriel Kwaitkowski | Lucas Gabriel&fontSize=30&fontColor=00FF00&animation=twinkling&fontAlignY=35"/> 
