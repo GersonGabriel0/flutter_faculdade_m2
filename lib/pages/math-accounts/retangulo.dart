@@ -1,12 +1,21 @@
-import 'package:flutter_faculdade_m2/main.dart';
-import 'package:flutter_faculdade_m2/pages/home.dart';
-import 'package:flutter_faculdade_m2/pages/signup.page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_faculdade_m2/pages/home.dart';
+import 'package:flutter_faculdade_m2/custom_colors.dart';
+import 'package:flutter_faculdade_m2/pages/perfil.dart';
 
-import '../math-results/resultadoRetangulo.dart';
-
-class Retangulo extends StatelessWidget {
+class Retangulo extends StatefulWidget {
   @override
+  _RetanguloState createState() => _RetanguloState();
+}
+
+class _RetanguloState extends State<Retangulo> {
+  TextEditingController _ldController = TextEditingController();
+  TextEditingController _leController = TextEditingController();
+  TextEditingController _resultController = TextEditingController();
+  bool _obscurePassword = true;
+
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,103 +24,125 @@ class Retangulo extends StatelessWidget {
         title: const Text("Calculando"),
       ),
       body: Container(
-        padding: EdgeInsets.only(top: 60, left: 40, right: 40),
-        color: Colors.white,
-        child: ListView(
-          children: <Widget>[
-            Container(
-              height: 40,
-              child: Text(
-                "Retangulo",
+        height: MediaQuery.of(context).size.height,
+        padding: EdgeInsets.symmetric(horizontal: 50, vertical: 30),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              CustomColors().getGradientMainColor(),
+              CustomColors().getGradientSecondaryColor(),
+            ],
+          ),
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                "Resolução do Retangulo",
                 textAlign: TextAlign.center,
-              ),
-            ),
-            Container(
-              height: 40,
-              child: Text(
-                "fórmula: A = b . h",
-                textAlign: TextAlign.center,
-              ),
-            ),
-            TextFormField(
-              // estilização A
-              // autofocus: true,
-              keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                labelText: "A",
-                labelStyle: TextStyle(
-                  color: Colors.black38,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 38,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              style: TextStyle(fontSize: 20),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextFormField(
-              // estilização b
-              // autofocus: true,
-              keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                labelText: "b",
-                labelStyle: TextStyle(
-                  color: Colors.black38,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20,
-                ),
-              ),
-              style: TextStyle(fontSize: 20),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextFormField(
-              // estilização h
-              // autofocus: true,
-              keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                labelText: "h",
-                labelStyle: TextStyle(
-                  color: Colors.black38,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20,
-                ),
-              ),
-              style: TextStyle(fontSize: 20),
-            ),
-            const SizedBox(height: 30),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(4),
-              child: Stack(
-                children: <Widget>[
-                  Positioned.fill(
-                    child: Container(
-                      decoration: const BoxDecoration(color: Colors.blue),
-                    ),
-                  ),
-                  TextButton(
-                    // estilização do Botao
-                    style: TextButton.styleFrom(
-                      padding: const EdgeInsets.all(14.0),
-                      primary: Colors.white,
-                      textStyle: const TextStyle(fontSize: 20),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ResultadoRetangulo(),
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      controller: _ldController,
+                      autofocus: true,
+                      style: TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        labelText: "Base do Retangulo",
+                        labelStyle: TextStyle(
+                          color: Colors.white,
                         ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    TextFormField(
+                      controller: _leController,
+                      style: TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        labelText: "Haltura do Retangulo",
+                        labelStyle: TextStyle(
+                          color: Colors.white,
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(bottom: 10),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  var teste = int.tryParse(_ldController.text);
+                  var teste2 = int.tryParse(_leController.text);
+                  var vezes = teste! * teste2!;
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text('Resolução do Retangulo\n'),
+                        content: Text("A = b . h\n"
+                            "A = ${_ldController.text} . ${_leController.text}\n"
+                            'A = ${vezes}\n'),
                       );
                     },
-                    child: const Text('Enviar dados'),
+                  );
+                },
+                child: Text(
+                  "Calcular a área do Retangulo",
+                  style: TextStyle(
+                    color: Colors.white,
                   ),
-                ],
+                ),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                    CustomColors().getActivePrimaryButtonColor(),
+                  ),
+                  shape: MaterialStateProperty.all<OutlinedBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ],
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 10),
+                child: Divider(
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
