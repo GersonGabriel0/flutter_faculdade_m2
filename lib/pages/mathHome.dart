@@ -1,7 +1,5 @@
-import 'package:flutter_faculdade_m2/main.dart';
-import 'package:flutter_faculdade_m2/pages/home.dart';
+import 'package:flutter_faculdade_m2/pages/math-accounts/quadrado.dart';
 import 'package:flutter_faculdade_m2/pages/math-accounts/retangulo.dart';
-import 'package:flutter_faculdade_m2/pages/signup.page.dart';
 import 'package:flutter/material.dart';
 
 class mathHome extends StatelessWidget {
@@ -41,7 +39,12 @@ class mathHome extends StatelessWidget {
           Card(
             margin: const EdgeInsets.all(8),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Quadrado()),
+                );
+              },
               splashColor: Colors.blue,
               child: Center(
                 child: Column(
