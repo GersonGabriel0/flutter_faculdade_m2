@@ -1,12 +1,18 @@
-import 'package:flutter_faculdade_m2/main.dart';
-import 'package:flutter_faculdade_m2/pages/home.dart';
-import 'package:flutter_faculdade_m2/pages/signup.page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_faculdade_m2/custom_colors.dart';
 
-import '../physics-results/result-calorLatente.dart';
-
-class CalorLatente extends StatelessWidget {
+class CalorLatente extends StatefulWidget {
   @override
+  _QuadradoState createState() => _QuadradoState();
+}
+
+class _QuadradoState extends State<CalorLatente> {
+  TextEditingController _PrimeiroController = TextEditingController();
+  TextEditingController _SegundoController = TextEditingController();
+  bool _obscurePassword = true;
+
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,99 +21,135 @@ class CalorLatente extends StatelessWidget {
         title: const Text("Calculando"),
       ),
       body: Container(
-        padding: EdgeInsets.only(top: 60, left: 40, right: 40),
-        color: Colors.white,
-        child: ListView(
-          children: <Widget>[
-            Container(
-              height: 40,
-              child: Text(
-                "Calor latente",
+        height: MediaQuery.of(context).size.height,
+        padding: EdgeInsets.symmetric(horizontal: 50, vertical: 30),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              CustomColors().getGradientMainColor(),
+              CustomColors().getGradientSecondaryColor(),
+            ],
+          ),
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                "Resolução Calor latente\n",
                 textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 38,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            Container(
-              height: 40,
-              child: Text(
-                "fórmula: Q = m . L",
+              Text(
+                "Q = m . L\n",
                 textAlign: TextAlign.center,
-              ),
-            ),
-            TextFormField(
-              // autofocus: true,
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                labelText: "Q",
-                labelStyle: TextStyle(
-                  color: Colors.black38,
-                  fontWeight: FontWeight.w400,
+                style: TextStyle(
+                  color: Colors.white,
                   fontSize: 20,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-              style: TextStyle(fontSize: 20),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextFormField(
-              // autofocus: true,
-              keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                labelText: "m",
-                labelStyle: TextStyle(
-                  color: Colors.black38,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20,
-                ),
-              ),
-              style: TextStyle(fontSize: 20),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TextFormField(
-              // autofocus: true,
-              keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                labelText: "L",
-                labelStyle: TextStyle(
-                  color: Colors.black38,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20,
-                ),
-              ),
-              style: TextStyle(fontSize: 20),
-            ),
-            const SizedBox(height: 30),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(4),
-              child: Stack(
-                children: <Widget>[
-                  Positioned.fill(
-                    child: Container(
-                      decoration: const BoxDecoration(color: Colors.blue),
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      controller: _PrimeiroController,
+                      autofocus: true,
+                      style: TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        labelText: "m",
+                        labelStyle: TextStyle(
+                          color: Colors.white,
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                  TextButton(
-                    style: TextButton.styleFrom(
-                      padding: const EdgeInsets.all(14.0),
-                      primary: Colors.white,
-                      textStyle: const TextStyle(fontSize: 20),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ResultadoCalorLatente(),
+                    TextFormField(
+                      controller: _SegundoController,
+                      style: TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        labelText: "L",
+                        labelStyle: TextStyle(
+                          color: Colors.white,
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(bottom: 10),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  var m = int.tryParse(_PrimeiroController.text);
+                  var l = int.tryParse(_SegundoController.text);
+                  var q = m! * l!;
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text('Resolução Calor latente\n'),
+                        content: Text("Q = M . L\n"
+                            "Q = ${m} . ${l}\n"
+                            'A = ${q}\n'
                         ),
                       );
                     },
-                    child: const Text('Enviar dados'),
+                  );
+                },
+                child: Text(
+                  "Calcular",
+                  style: TextStyle(
+                    color: Colors.white,
                   ),
-                ],
+                ),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                    CustomColors().getActivePrimaryButtonColor(),
+                  ),
+                  shape: MaterialStateProperty.all<OutlinedBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ],
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 15),
+                child: Divider(
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
