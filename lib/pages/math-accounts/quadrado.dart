@@ -113,7 +113,10 @@ class _QuadradoState extends State<Quadrado> {
                         title: Text('Resolução do Quadrado\n'),
                         content: Text("A = b . h\n"
                             "A = ${_ldController.text} . ${_leController.text}\n"
-                            'A = ${vezes}\n'),
+                            'A = ${vezes}\n'
+                            ""
+                            "Lado Esquerdo:"
+                            '${_ldController.text}'),
                       );
                     },
                   );
