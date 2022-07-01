@@ -42,7 +42,7 @@ class _RetanguloState extends State<Retangulo> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                "Resolução do Retangulo",
+                "Resolução do Retangulo ",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
