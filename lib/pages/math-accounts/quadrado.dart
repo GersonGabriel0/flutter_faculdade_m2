@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_faculdade_m2/pages/home.dart';
 import 'package:flutter_faculdade_m2/custom_colors.dart';
 import 'package:flutter_faculdade_m2/pages/perfil.dart';
-import '../math-results/resultadoRetangulo.dart';
 
 class Quadrado extends StatefulWidget {
   @override
@@ -20,6 +19,10 @@ class _QuadradoState extends State<Quadrado> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        title: const Text("Calculando"),
+      ),
       body: Container(
         height: MediaQuery.of(context).size.height,
         padding: EdgeInsets.symmetric(horizontal: 50, vertical: 30),
@@ -100,18 +103,17 @@ class _QuadradoState extends State<Quadrado> {
               ),
               ElevatedButton(
                 onPressed: () {
+                  var teste = int.tryParse(_ldController.text);
+                  var teste2 = int.tryParse(_leController.text);
+                  var vezes = teste! * teste2!;
                   showDialog(
                     context: context,
                     builder: (context) {
                       return AlertDialog(
-                        title: Text('Resolução do Quadrado'),
-                        content: Text("Lado Direito X Lado Esquerdo"
-                            "-"
-                            "Lado Direito:"
-                            '${_ldController.text}'
-                            " ? "
-                            "Lado Esquerdo:"
-                            '${_ldController.text}'),
+                        title: Text('Resolução do Quadrado\n'),
+                        content: Text("A = b . h\n"
+                            "A = ${_ldController.text} . ${_leController.text}\n"
+                            'A = ${vezes}\n'),
                       );
                     },
                   );
