@@ -3,15 +3,16 @@ import 'package:flutter_faculdade_m2/pages/home.dart';
 import 'package:flutter_faculdade_m2/custom_colors.dart';
 import 'package:flutter_faculdade_m2/pages/perfil.dart';
 
-class Retangulo extends StatefulWidget {
+class Losango extends StatefulWidget {
   @override
-  _RetanguloState createState() => _RetanguloState();
+  _LosangoState createState() => _LosangoState();
 }
 
-class _RetanguloState extends State<Retangulo> {
+class _LosangoState extends State<Losango> {
   TextEditingController _ldController = TextEditingController();
   TextEditingController _leController = TextEditingController();
   TextEditingController _resultController = TextEditingController();
+  TextEditingController _dController = TextEditingController();
   bool _obscurePassword = true;
 
   final _formKey = GlobalKey<FormState>();
@@ -42,7 +43,7 @@ class _RetanguloState extends State<Retangulo> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                "Resolução do Retangulo ",
+                "Resolução do Losango",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
@@ -59,7 +60,7 @@ class _RetanguloState extends State<Retangulo> {
                       autofocus: true,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        labelText: "Base do Retangulo",
+                        labelText: "Lado maior do Losando",
                         labelStyle: TextStyle(
                           color: Colors.white,
                         ),
@@ -79,7 +80,7 @@ class _RetanguloState extends State<Retangulo> {
                       controller: _leController,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        labelText: "Haltura do Retangulo",
+                        labelText: "Lado menor do Losango",
                         labelStyle: TextStyle(
                           color: Colors.white,
                         ),
@@ -103,23 +104,24 @@ class _RetanguloState extends State<Retangulo> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  var teste = int.tryParse(_ldController.text);
-                  var teste2 = int.tryParse(_leController.text);
-                  var vezes = teste! * teste2!;
+                  var dlosango = int.tryParse(_ldController.text);
+                  var Dlosango = int.tryParse(_leController.text);
+                  var divisao = int.tryParse(_dController.text);
+                  var vezes = (dlosango! * Dlosango!) / 2;
                   showDialog(
                     context: context,
                     builder: (context) {
                       return AlertDialog(
-                        title: Text('Resolução do Retangulo\n'),
-                        content: Text("A = b . h\n"
-                            "A = ${_ldController.text} . ${_leController.text}\n"
-                            'A = ${vezes}\n'),
+                        title: Text('Resolução do Losango\n'),
+                        content: Text("A = D . d\2"
+                            "A = ${_ldController.text} . ${_leController.text} / ${_dController.text}\n"
+                            'Losango = ${vezes}\n'),
                       );
                     },
                   );
                 },
                 child: Text(
-                  "Calcular a área do Retangulo",
+                  "Calcular tamanho do Losango",
                   style: TextStyle(
                     color: Colors.white,
                   ),

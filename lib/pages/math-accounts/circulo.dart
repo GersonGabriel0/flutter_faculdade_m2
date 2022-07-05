@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_faculdade_m2/pages/home.dart';
 import 'package:flutter_faculdade_m2/custom_colors.dart';
-import 'package:flutter_faculdade_m2/pages/perfil.dart';
 
-class Retangulo extends StatefulWidget {
+class Circulo extends StatefulWidget {
   @override
-  _RetanguloState createState() => _RetanguloState();
+  _CirculoState createState() => _CirculoState();
 }
 
-class _RetanguloState extends State<Retangulo> {
+class _CirculoState extends State<Circulo> {
   TextEditingController _ldController = TextEditingController();
   TextEditingController _leController = TextEditingController();
   TextEditingController _resultController = TextEditingController();
@@ -42,7 +40,7 @@ class _RetanguloState extends State<Retangulo> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                "Resolução do Retangulo ",
+                "Resolução do Quadrado",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
@@ -59,7 +57,7 @@ class _RetanguloState extends State<Retangulo> {
                       autofocus: true,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        labelText: "Base do Retangulo",
+                        labelText: "Lado Direito Quadrado",
                         labelStyle: TextStyle(
                           color: Colors.white,
                         ),
@@ -79,7 +77,7 @@ class _RetanguloState extends State<Retangulo> {
                       controller: _leController,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        labelText: "Haltura do Retangulo",
+                        labelText: "Lado Esquerdo Quadrado",
                         labelStyle: TextStyle(
                           color: Colors.white,
                         ),
@@ -110,16 +108,19 @@ class _RetanguloState extends State<Retangulo> {
                     context: context,
                     builder: (context) {
                       return AlertDialog(
-                        title: Text('Resolução do Retangulo\n'),
+                        title: Text('Resolução do Quadrado\n'),
                         content: Text("A = b . h\n"
                             "A = ${_ldController.text} . ${_leController.text}\n"
-                            'A = ${vezes}\n'),
+                            'A = ${vezes}\n'
+                            ""
+                            "Lado Esquerdo:"
+                            '${_ldController.text}'),
                       );
                     },
                   );
                 },
                 child: Text(
-                  "Calcular a área do Retangulo",
+                  "Calcular valor do Quadrado",
                   style: TextStyle(
                     color: Colors.white,
                   ),

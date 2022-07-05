@@ -3,15 +3,16 @@ import 'package:flutter_faculdade_m2/pages/home.dart';
 import 'package:flutter_faculdade_m2/custom_colors.dart';
 import 'package:flutter_faculdade_m2/pages/perfil.dart';
 
-class Retangulo extends StatefulWidget {
+class Juros extends StatefulWidget {
   @override
-  _RetanguloState createState() => _RetanguloState();
+  _JurosState createState() => _JurosState();
 }
 
-class _RetanguloState extends State<Retangulo> {
-  TextEditingController _ldController = TextEditingController();
-  TextEditingController _leController = TextEditingController();
-  TextEditingController _resultController = TextEditingController();
+class _JurosState extends State<Juros> {
+  TextEditingController _capitalController = TextEditingController();
+  TextEditingController _taxaController = TextEditingController();
+  TextEditingController _tempoController = TextEditingController();
+  TextEditingController _resultadoController = TextEditingController();
   bool _obscurePassword = true;
 
   final _formKey = GlobalKey<FormState>();
@@ -42,7 +43,7 @@ class _RetanguloState extends State<Retangulo> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                "Resolução do Retangulo ",
+                "Calculo taxa de juros",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
@@ -55,11 +56,12 @@ class _RetanguloState extends State<Retangulo> {
                 child: Column(
                   children: [
                     TextFormField(
-                      controller: _ldController,
+                      controller: _capitalController,
                       autofocus: true,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        labelText: "Base do Retangulo",
+                        labelText:
+                            "Digite qual montante que deseja calcular os juros",
                         labelStyle: TextStyle(
                           color: Colors.white,
                         ),
@@ -76,10 +78,31 @@ class _RetanguloState extends State<Retangulo> {
                       ),
                     ),
                     TextFormField(
-                      controller: _leController,
+                      controller: _taxaController,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        labelText: "Haltura do Retangulo",
+                        labelText: "Taxa de juros",
+                        labelStyle: TextStyle(
+                          color: Colors.white,
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    TextFormField(
+                      controller: _tempoController,
+                      style: TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        labelText:
+                            "Tempo(meses) que o dinheiro vai ficar acumulando juros",
                         labelStyle: TextStyle(
                           color: Colors.white,
                         ),
@@ -103,23 +126,26 @@ class _RetanguloState extends State<Retangulo> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  var teste = int.tryParse(_ldController.text);
-                  var teste2 = int.tryParse(_leController.text);
-                  var vezes = teste! * teste2!;
+                  var capital = int.tryParse(_capitalController.text);
+                  var taxa = int.tryParse(_taxaController.text);
+                  var tempo = int.tryParse(_tempoController.text);
+                  var resultado = (capital! * taxa!) * tempo!;
                   showDialog(
                     context: context,
                     builder: (context) {
                       return AlertDialog(
-                        title: Text('Resolução do Retangulo\n'),
-                        content: Text("A = b . h\n"
-                            "A = ${_ldController.text} . ${_leController.text}\n"
-                            'A = ${vezes}\n'),
+                        title: Text('A taxa de juros è:'),
+                        content: Text("J = C . I . T"
+                            "A = ${_capitalController.text} . ${_taxaController.text} . ${_tempoController.text}"
+                            'A = ${resultado}\n'
+                            ""
+                            '${_capitalController.text}'),
                       );
                     },
                   );
                 },
                 child: Text(
-                  "Calcular a área do Retangulo",
+                  "Calcular taxa de juros",
                   style: TextStyle(
                     color: Colors.white,
                   ),
