@@ -1,16 +1,12 @@
 import 'package:flutter_faculdade_m2/pages/math-accounts/bhaskara.dart';
-<<<<<<< HEAD
 import 'package:flutter_faculdade_m2/pages/math-accounts/circulo.dart';
 import 'package:flutter_faculdade_m2/pages/math-accounts/juros.dart';
 import 'package:flutter_faculdade_m2/pages/math-accounts/losando.dart';
-=======
->>>>>>> origin/Gerson-Gabriel
 import 'package:flutter_faculdade_m2/pages/math-accounts/quadrado.dart';
 import 'package:flutter_faculdade_m2/pages/math-accounts/retangulo.dart';
 import 'package:flutter/material.dart';
 
 class mathHome extends StatelessWidget {
-  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
