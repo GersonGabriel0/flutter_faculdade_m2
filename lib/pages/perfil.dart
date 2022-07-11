@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_faculdade_m2/pages/edit.dart';
 import 'dart:math' as math;
 
 import 'package:flutter_faculdade_m2/pages/home.dart';
