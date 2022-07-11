@@ -1,29 +1,23 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_faculdade_m2/configs/app_settings.dart';
+import 'package:flutter_faculdade_m2/configs/hive_config.dart';
+import 'package:flutter_faculdade_m2/services/auth_service.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_faculdade_m2/pages/login.page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'meu_aplicativo.dart';
 
 void main() async {
-  runApp(const MyApp());
-
   WidgetsFlutterBinding.ensureInitialized();
+  await HiveConfig.start();
   await Firebase.initializeApp();
 
-  FirebaseFirestore.instance.collection('teste').add({'aulaunc': 'aulaunc'});
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Faculdade M2',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.deepOrange,
-      ),
-      home: LoginPage(),
-    );
-  }
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => AuthService()),
+        ChangeNotifierProvider(create: (context) => AppSettings()),
+      ],
+      child: MeuAplicativo(),
+    ),
+  );
 }
