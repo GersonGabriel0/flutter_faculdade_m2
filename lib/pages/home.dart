@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
                   mainAxisSize: MainAxisSize.min,
                   children: const <Widget>[
                     Icon(
-                      Icons.home,
+                      Icons.logout,
                       size: 70,
                       color: Colors.blue,
                     ),
