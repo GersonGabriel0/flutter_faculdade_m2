@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_faculdade_m2/pages/home.dart';
 import 'package:flutter_faculdade_m2/custom_colors.dart';
+import 'package:flutter_faculdade_m2/pages/perfil.dart';
 
-class CalorLatente extends StatefulWidget {
+class Juros extends StatefulWidget {
   @override
-  _QuadradoState createState() => _QuadradoState();
+  _JurosState createState() => _JurosState();
 }
 
-class _QuadradoState extends State<CalorLatente> {
-  TextEditingController _PrimeiroController = TextEditingController();
-  TextEditingController _SegundoController = TextEditingController();
+class _JurosState extends State<Juros> {
+  TextEditingController _capitalController = TextEditingController();
+  TextEditingController _taxaController = TextEditingController();
+  TextEditingController _tempoController = TextEditingController();
+  TextEditingController _resultadoController = TextEditingController();
   bool _obscurePassword = true;
 
   final _formKey = GlobalKey<FormState>();
@@ -39,20 +43,11 @@ class _QuadradoState extends State<CalorLatente> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                "Resolução Calor latente\n",
+                "Calculo taxa de juros",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 38,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                "Q = m . L\n",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -61,11 +56,12 @@ class _QuadradoState extends State<CalorLatente> {
                 child: Column(
                   children: [
                     TextFormField(
-                      controller: _PrimeiroController,
+                      controller: _capitalController,
                       autofocus: true,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        labelText: "m",
+                        labelText:
+                            "Digite qual montante que deseja calcular os juros",
                         labelStyle: TextStyle(
                           color: Colors.white,
                         ),
@@ -82,10 +78,31 @@ class _QuadradoState extends State<CalorLatente> {
                       ),
                     ),
                     TextFormField(
-                      controller: _SegundoController,
+                      controller: _taxaController,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        labelText: "L",
+                        labelText: "Taxa de juros",
+                        labelStyle: TextStyle(
+                          color: Colors.white,
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    TextFormField(
+                      controller: _tempoController,
+                      style: TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        labelText:
+                            "Tempo(meses) que o dinheiro vai ficar acumulando juros",
                         labelStyle: TextStyle(
                           color: Colors.white,
                         ),
@@ -109,24 +126,26 @@ class _QuadradoState extends State<CalorLatente> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  var m = int.tryParse(_PrimeiroController.text);
-                  var l = int.tryParse(_SegundoController.text);
-                  var q = m! * l!;
+                  var capital = int.tryParse(_capitalController.text);
+                  var taxa = int.tryParse(_taxaController.text);
+                  var tempo = int.tryParse(_tempoController.text);
+                  var resultado = (capital! * taxa!) * tempo!;
                   showDialog(
                     context: context,
                     builder: (context) {
                       return AlertDialog(
-                        title: Text('Resolução Calor latente\n'),
-                        content: Text("Q = M . L\n"
-                            "Q = ${m} . ${l}\n"
-                            'A = ${q}\n'
-                        ),
+                        title: Text('A taxa de juros è:'),
+                        content: Text("J = C . I . T"
+                            "A = ${_capitalController.text} . ${_taxaController.text} . ${_tempoController.text}"
+                            'A = ${resultado}\n'
+                            ""
+                            '${_capitalController.text}'),
                       );
                     },
                   );
                 },
                 child: Text(
-                  "Calcular",
+                  "Calcular taxa de juros",
                   style: TextStyle(
                     color: Colors.white,
                   ),
@@ -143,7 +162,7 @@ class _QuadradoState extends State<CalorLatente> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 15),
+                padding: EdgeInsets.symmetric(vertical: 10),
                 child: Divider(
                   color: Colors.black,
                 ),

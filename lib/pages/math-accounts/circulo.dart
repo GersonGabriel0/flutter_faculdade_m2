@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_faculdade_m2/custom_colors.dart';
 
-class CalorLatente extends StatefulWidget {
+class Circulo extends StatefulWidget {
   @override
-  _QuadradoState createState() => _QuadradoState();
+  _CirculoState createState() => _CirculoState();
 }
 
-class _QuadradoState extends State<CalorLatente> {
-  TextEditingController _PrimeiroController = TextEditingController();
-  TextEditingController _SegundoController = TextEditingController();
+class _CirculoState extends State<Circulo> {
+  TextEditingController _ldController = TextEditingController();
+  TextEditingController _leController = TextEditingController();
+  TextEditingController _resultController = TextEditingController();
   bool _obscurePassword = true;
 
   final _formKey = GlobalKey<FormState>();
@@ -39,20 +40,11 @@ class _QuadradoState extends State<CalorLatente> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                "Resolução Calor latente\n",
+                "Resolução do Quadrado",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 38,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                "Q = m . L\n",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -61,11 +53,11 @@ class _QuadradoState extends State<CalorLatente> {
                 child: Column(
                   children: [
                     TextFormField(
-                      controller: _PrimeiroController,
+                      controller: _ldController,
                       autofocus: true,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        labelText: "m",
+                        labelText: "Lado Direito Quadrado",
                         labelStyle: TextStyle(
                           color: Colors.white,
                         ),
@@ -82,10 +74,10 @@ class _QuadradoState extends State<CalorLatente> {
                       ),
                     ),
                     TextFormField(
-                      controller: _SegundoController,
+                      controller: _leController,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        labelText: "L",
+                        labelText: "Lado Esquerdo Quadrado",
                         labelStyle: TextStyle(
                           color: Colors.white,
                         ),
@@ -109,24 +101,26 @@ class _QuadradoState extends State<CalorLatente> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  var m = int.tryParse(_PrimeiroController.text);
-                  var l = int.tryParse(_SegundoController.text);
-                  var q = m! * l!;
+                  var teste = int.tryParse(_ldController.text);
+                  var teste2 = int.tryParse(_leController.text);
+                  var vezes = teste! * teste2!;
                   showDialog(
                     context: context,
                     builder: (context) {
                       return AlertDialog(
-                        title: Text('Resolução Calor latente\n'),
-                        content: Text("Q = M . L\n"
-                            "Q = ${m} . ${l}\n"
-                            'A = ${q}\n'
-                        ),
+                        title: Text('Resolução do Quadrado\n'),
+                        content: Text("A = b . h\n"
+                            "A = ${_ldController.text} . ${_leController.text}\n"
+                            'A = ${vezes}\n'
+                            ""
+                            "Lado Esquerdo:"
+                            '${_ldController.text}'),
                       );
                     },
                   );
                 },
                 child: Text(
-                  "Calcular",
+                  "Calcular valor do Quadrado",
                   style: TextStyle(
                     color: Colors.white,
                   ),
@@ -143,7 +137,7 @@ class _QuadradoState extends State<CalorLatente> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 15),
+                padding: EdgeInsets.symmetric(vertical: 10),
                 child: Divider(
                   color: Colors.black,
                 ),

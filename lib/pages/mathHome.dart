@@ -1,3 +1,7 @@
+import 'package:flutter_faculdade_m2/pages/math-accounts/bhaskara.dart';
+import 'package:flutter_faculdade_m2/pages/math-accounts/circulo.dart';
+import 'package:flutter_faculdade_m2/pages/math-accounts/juros.dart';
+import 'package:flutter_faculdade_m2/pages/math-accounts/losando.dart';
 import 'package:flutter_faculdade_m2/pages/math-accounts/quadrado.dart';
 import 'package:flutter_faculdade_m2/pages/math-accounts/retangulo.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +25,7 @@ class mathHome extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Retangulo()),
+                  MaterialPageRoute(builder: (context) => bhaskara()),
                 );
               },
               splashColor: Colors.blue,
@@ -29,8 +33,67 @@ class mathHome extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: const <Widget>[
-                    Text("Formulas retangulo",
-                        style: TextStyle(fontSize: 17.0)),
+                    Text("Bhaskara", style: TextStyle(fontSize: 17.0)),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Card(
+            margin: const EdgeInsets.all(8),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Circulo()),
+                );
+              },
+              splashColor: Colors.blue,
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: const <Widget>[
+                    Text("Circulo", style: TextStyle(fontSize: 17.0)),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Card(
+            margin: const EdgeInsets.all(8),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Juros()),
+                );
+              },
+              splashColor: Colors.blue,
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: const <Widget>[
+                    Text("Juros simples", style: TextStyle(fontSize: 17.0)),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Card(
+            margin: const EdgeInsets.all(8),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Losango()),
+                );
+              },
+              splashColor: Colors.blue,
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: const <Widget>[
+                    Text("Losango", style: TextStyle(fontSize: 17.0)),
                   ],
                 ),
               ),
@@ -50,7 +113,27 @@ class mathHome extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: const <Widget>[
-                    Text("Formula em ATT..", style: TextStyle(fontSize: 17.0)),
+                    Text("Quadrado", style: TextStyle(fontSize: 17.0)),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Card(
+            margin: const EdgeInsets.all(8),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Retangulo()),
+                );
+              },
+              splashColor: Colors.blue,
+              child: Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: const <Widget>[
+                    Text("Retangulo", style: TextStyle(fontSize: 17.0)),
                   ],
                 ),
               ),

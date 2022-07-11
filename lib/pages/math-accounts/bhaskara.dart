@@ -1,14 +1,17 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_faculdade_m2/custom_colors.dart';
 
-class CalorLatente extends StatefulWidget {
+class bhaskara extends StatefulWidget {
   @override
   _QuadradoState createState() => _QuadradoState();
 }
 
-class _QuadradoState extends State<CalorLatente> {
+class _QuadradoState extends State<bhaskara> {
   TextEditingController _PrimeiroController = TextEditingController();
   TextEditingController _SegundoController = TextEditingController();
+  TextEditingController _TerceiroController = TextEditingController();
   bool _obscurePassword = true;
 
   final _formKey = GlobalKey<FormState>();
@@ -39,20 +42,11 @@ class _QuadradoState extends State<CalorLatente> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                "Resolução Calor latente\n",
+                "Resolução Bhaskara\n",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 38,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                "Q = m . L\n",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -65,7 +59,7 @@ class _QuadradoState extends State<CalorLatente> {
                       autofocus: true,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        labelText: "m",
+                        labelText: "Valor de A",
                         labelStyle: TextStyle(
                           color: Colors.white,
                         ),
@@ -85,7 +79,27 @@ class _QuadradoState extends State<CalorLatente> {
                       controller: _SegundoController,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        labelText: "L",
+                        labelText: "Valor de B",
+                        labelStyle: TextStyle(
+                          color: Colors.white,
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    TextFormField(
+                      controller: _TerceiroController,
+                      style: TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        labelText: "Valor de C",
                         labelStyle: TextStyle(
                           color: Colors.white,
                         ),
@@ -109,21 +123,60 @@ class _QuadradoState extends State<CalorLatente> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  var m = int.tryParse(_PrimeiroController.text);
-                  var l = int.tryParse(_SegundoController.text);
-                  var q = m! * l!;
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        title: Text('Resolução Calor latente\n'),
-                        content: Text("Q = M . L\n"
-                            "Q = ${m} . ${l}\n"
-                            'A = ${q}\n'
-                        ),
-                      );
-                    },
-                  );
+                  var a = double.tryParse(_PrimeiroController.text);
+                  var b = double.tryParse(_SegundoController.text);
+                  var c = double.tryParse(_TerceiroController.text);
+                  
+                  var n1 = b! * b;
+
+                  var n2 = -4 * a! * c!;
+
+                  var n3 = n1 + n2;
+
+                  var n = sqrt(n3);
+
+                  var m = 2 * a;
+
+                  var x1 = (-b + n) / m;
+                  var x2 = (-b - n) / m;
+
+                  if (x1 > 0 || x1 <= 0 || x2 > 0 || x2 <= 0) {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text('Resolução força resultante\n'),
+                          content: Text('${b}² . -4 . ${a} . ${c}'
+                              'X = ${b} ± √${n3} / ${m}\n'
+                              '___________________________\n'
+
+                              'X1 = ${b} + ${n} / ${m}\n'
+                              'X1 = ${x1}\n'
+                              '___________________________\n'
+
+                              'X2 = ${b} - ${n} / ${m}\n'
+                              'X2 = ${x2}\n'
+                              
+                          ),
+                        );
+                      },
+                    );
+                  }else {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text('Informe valores validos!\n Para X1 e X2 terem valores positivos'),
+                            content: Text('Se estiver testando podo utilizar os seguintes valores:\n'
+                              'A = 1\n'
+                              'B = 8\n'
+                              'C = -9'
+                              
+                          ),
+                        );
+                      },
+                    );
+                  }
                 },
                 child: Text(
                   "Calcular",

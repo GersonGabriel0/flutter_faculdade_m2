@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_faculdade_m2/custom_colors.dart';
 
-class CalorLatente extends StatefulWidget {
+class ForcaResultante extends StatefulWidget {
   @override
   _QuadradoState createState() => _QuadradoState();
 }
 
-class _QuadradoState extends State<CalorLatente> {
+class _QuadradoState extends State<ForcaResultante> {
   TextEditingController _PrimeiroController = TextEditingController();
   TextEditingController _SegundoController = TextEditingController();
   bool _obscurePassword = true;
@@ -39,7 +39,7 @@ class _QuadradoState extends State<CalorLatente> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                "Resolução Calor latente\n",
+                "Resolução Força resultante\n",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
@@ -48,7 +48,7 @@ class _QuadradoState extends State<CalorLatente> {
                 ),
               ),
               Text(
-                "Q = m . L\n",
+                "Fr = m . a\n",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
@@ -85,7 +85,7 @@ class _QuadradoState extends State<CalorLatente> {
                       controller: _SegundoController,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        labelText: "L",
+                        labelText: "a",
                         labelStyle: TextStyle(
                           color: Colors.white,
                         ),
@@ -110,16 +110,16 @@ class _QuadradoState extends State<CalorLatente> {
               ElevatedButton(
                 onPressed: () {
                   var m = int.tryParse(_PrimeiroController.text);
-                  var l = int.tryParse(_SegundoController.text);
-                  var q = m! * l!;
+                  var a = int.tryParse(_SegundoController.text);
+                  var fr = m! * a!;
                   showDialog(
                     context: context,
                     builder: (context) {
                       return AlertDialog(
-                        title: Text('Resolução Calor latente\n'),
-                        content: Text("Q = M . L\n"
-                            "Q = ${m} . ${l}\n"
-                            'A = ${q}\n'
+                        title: Text('Resolução força resultante\n'),
+                        content: Text("Fr = m . a\n"
+                            "Fr = ${m} . ${a}\n"
+                            'Fr = ${fr}\n'
                         ),
                       );
                     },
