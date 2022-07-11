@@ -109,8 +109,8 @@ class _QuadradoState extends State<ForcaResultante> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  var m = int.tryParse(_PrimeiroController.text);
-                  var a = int.tryParse(_SegundoController.text);
+                  var m = double.tryParse(_PrimeiroController.text);
+                  var a = double.tryParse(_SegundoController.text);
                   var fr = m! * a!;
                   showDialog(
                     context: context,
