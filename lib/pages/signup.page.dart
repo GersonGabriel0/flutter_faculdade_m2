@@ -55,21 +55,6 @@ class SignupPage extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            TextFormField(
-              // autofocus: true,
-              keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                labelText: "Nome",
-                labelStyle: TextStyle(
-                  color: Colors.black38,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20,
-                ),
-              ),
-              style: TextStyle(
-                fontSize: 20,
-              ),
-            ),
             SizedBox(
               height: 10,
             ),

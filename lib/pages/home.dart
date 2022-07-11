@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_faculdade_m2/pages/login.page.dart';
 import 'package:flutter_faculdade_m2/pages/mathHome.dart';
 import 'package:flutter_faculdade_m2/pages/perfil.dart';
 import 'package:flutter_faculdade_m2/pages/physicsHome.dart';
+import 'package:flutter_faculdade_m2/services/auth_service.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -26,25 +27,18 @@ class _HomePageState extends State<HomePage> {
           Card(
             margin: const EdgeInsets.all(8),
             child: InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => LoginPage(),
-                  ),
-                );
-              },
+              onTap: () => context.read<AuthService>().logout(),
               splashColor: Colors.blue,
               child: Center(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: const <Widget>[
                     Icon(
-                      Icons.home,
+                      Icons.logout,
                       size: 70,
                       color: Colors.blue,
                     ),
-                    Text("Home", style: TextStyle(fontSize: 17.0)),
+                    Text("Sair", style: TextStyle(fontSize: 17.0)),
                   ],
                 ),
               ),
