@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1020320202024",
+    "firebase_url": "https://glg-math-default-rtdb.firebaseio.com",
+    "project_id": "glg-math",
+    "storage_bucket": "glg-math.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1020320202024:android:622c83d5827ca49122641d",
+        "android_client_info": {
+          "package_name": "com.example.flutter_faculdade_m2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1020320202024-cqqrc40cf21l1gg1dkti1bdboc7pho6l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1XXTMXXX5Ag2Lra5bKnvh22G-xO1XYFY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1020320202024-cqqrc40cf21l1gg1dkti1bdboc7pho6l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
