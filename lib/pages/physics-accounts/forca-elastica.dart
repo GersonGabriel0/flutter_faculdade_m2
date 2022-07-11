@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_faculdade_m2/custom_colors.dart';
 
-class VelocidadeMedia extends StatefulWidget {
+class ForcaElastica extends StatefulWidget {
   @override
   _QuadradoState createState() => _QuadradoState();
 }
 
-class _QuadradoState extends State<VelocidadeMedia> {
+class _QuadradoState extends State<ForcaElastica> {
   TextEditingController _PrimeiroController = TextEditingController();
   TextEditingController _SegundoController = TextEditingController();
   bool _obscurePassword = true;
@@ -39,7 +39,7 @@ class _QuadradoState extends State<VelocidadeMedia> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                "Resolução Velocidade média\n",
+                "Resolução Forca Elástica\n",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
@@ -48,7 +48,7 @@ class _QuadradoState extends State<VelocidadeMedia> {
                 ),
               ),
               Text(
-                "Vm = Δs / Δt\n",
+                "Fel = k . x\n",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
@@ -65,7 +65,7 @@ class _QuadradoState extends State<VelocidadeMedia> {
                       autofocus: true,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        labelText: "Δs",
+                        labelText: "K",
                         labelStyle: TextStyle(
                           color: Colors.white,
                         ),
@@ -85,7 +85,7 @@ class _QuadradoState extends State<VelocidadeMedia> {
                       controller: _SegundoController,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        labelText: "Δt",
+                        labelText: "x",
                         labelStyle: TextStyle(
                           color: Colors.white,
                         ),
@@ -109,17 +109,17 @@ class _QuadradoState extends State<VelocidadeMedia> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  var s = double.tryParse(_PrimeiroController.text);
-                  var t = double.tryParse(_SegundoController.text);
-                  var vm = s! / t!;
+                  var k = double.tryParse(_PrimeiroController.text);
+                  var x = double.tryParse(_SegundoController.text);
+                  var Fel = k! * x!;
                   showDialog(
                     context: context,
                     builder: (context) {
                       return AlertDialog(
-                        title: Text('Resolução Velocidade média\n'),
-                        content: Text("Vm = Δs / Δt\n"
-                            "Vm = ${s} . ${t}\n"
-                            'Vm = ${vm}\n'
+                        title: Text('Resolução Forca Elástica\n'),
+                        content: Text("Fel = K . x\n"
+                            "Fel = ${k} . ${x}\n"
+                            'Fel = ${Fel}\n'
                         ),
                       );
                     },

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_faculdade_m2/custom_colors.dart';
 
-class VelocidadeMedia extends StatefulWidget {
+class EnergiaPotencialGravitacional extends StatefulWidget {
   @override
   _QuadradoState createState() => _QuadradoState();
 }
 
-class _QuadradoState extends State<VelocidadeMedia> {
+class _QuadradoState extends State<EnergiaPotencialGravitacional> {
   TextEditingController _PrimeiroController = TextEditingController();
   TextEditingController _SegundoController = TextEditingController();
+  TextEditingController _TerceiroController = TextEditingController();
   bool _obscurePassword = true;
 
   final _formKey = GlobalKey<FormState>();
@@ -39,7 +40,7 @@ class _QuadradoState extends State<VelocidadeMedia> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                "Resolução Velocidade média\n",
+                "Resolução energia potencial gravitacional\n",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
@@ -48,7 +49,7 @@ class _QuadradoState extends State<VelocidadeMedia> {
                 ),
               ),
               Text(
-                "Vm = Δs / Δt\n",
+                "Ep = m . g . h\n",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
@@ -65,7 +66,7 @@ class _QuadradoState extends State<VelocidadeMedia> {
                       autofocus: true,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        labelText: "Δs",
+                        labelText: "m",
                         labelStyle: TextStyle(
                           color: Colors.white,
                         ),
@@ -85,7 +86,7 @@ class _QuadradoState extends State<VelocidadeMedia> {
                       controller: _SegundoController,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        labelText: "Δt",
+                        labelText: "g",
                         labelStyle: TextStyle(
                           color: Colors.white,
                         ),
@@ -100,7 +101,28 @@ class _QuadradoState extends State<VelocidadeMedia> {
                           ),
                         ),
                       ),
-                    )
+                    ),
+                    TextFormField(
+                      controller: _TerceiroController,
+                      autofocus: true,
+                      style: TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        labelText: "h",
+                        labelStyle: TextStyle(
+                          color: Colors.white,
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -109,17 +131,18 @@ class _QuadradoState extends State<VelocidadeMedia> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  var s = double.tryParse(_PrimeiroController.text);
-                  var t = double.tryParse(_SegundoController.text);
-                  var vm = s! / t!;
+                  var m = double.tryParse(_PrimeiroController.text);
+                  var g = double.tryParse(_SegundoController.text);
+                  var h = double.tryParse(_TerceiroController.text);
+                  var Ep = m! * g! * h!;
                   showDialog(
                     context: context,
                     builder: (context) {
                       return AlertDialog(
-                        title: Text('Resolução Velocidade média\n'),
-                        content: Text("Vm = Δs / Δt\n"
-                            "Vm = ${s} . ${t}\n"
-                            'Vm = ${vm}\n'
+                        title: Text('Resolução energia potencial gravitacional\n'),
+                        content: Text("Ep = m . g . h\n"
+                            "Ep = ${m} . ${g} . ${h}\n"
+                            'Fat = ${Ep}\n'
                         ),
                       );
                     },

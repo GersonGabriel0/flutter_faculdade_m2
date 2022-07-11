@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_faculdade_m2/custom_colors.dart';
 
-class VelocidadeMedia extends StatefulWidget {
+class PressaoToltal extends StatefulWidget {
   @override
   _QuadradoState createState() => _QuadradoState();
 }
 
-class _QuadradoState extends State<VelocidadeMedia> {
+class _QuadradoState extends State<PressaoToltal> {
   TextEditingController _PrimeiroController = TextEditingController();
   TextEditingController _SegundoController = TextEditingController();
+  TextEditingController _TerceiroController = TextEditingController();
+  TextEditingController _QuartoController = TextEditingController();
   bool _obscurePassword = true;
 
   final _formKey = GlobalKey<FormState>();
@@ -39,7 +41,7 @@ class _QuadradoState extends State<VelocidadeMedia> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                "Resolução Velocidade média\n",
+                "Resolução pressão total\n",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
@@ -47,8 +49,8 @@ class _QuadradoState extends State<VelocidadeMedia> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Text(
-                "Vm = Δs / Δt\n",
+              const Text(
+                "Pt = Patm + ρ . g . h\n",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,
@@ -65,7 +67,7 @@ class _QuadradoState extends State<VelocidadeMedia> {
                       autofocus: true,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        labelText: "Δs",
+                        labelText: "Patm",
                         labelStyle: TextStyle(
                           color: Colors.white,
                         ),
@@ -85,7 +87,7 @@ class _QuadradoState extends State<VelocidadeMedia> {
                       controller: _SegundoController,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
-                        labelText: "Δt",
+                        labelText: "ρ",
                         labelStyle: TextStyle(
                           color: Colors.white,
                         ),
@@ -100,7 +102,49 @@ class _QuadradoState extends State<VelocidadeMedia> {
                           ),
                         ),
                       ),
-                    )
+                    ),
+                    TextFormField(
+                      controller: _TerceiroController,
+                      autofocus: true,
+                      style: TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        labelText: "g",
+                        labelStyle: TextStyle(
+                          color: Colors.white,
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    TextFormField(
+                      controller: _QuartoController,
+                      autofocus: true,
+                      style: TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        labelText: "h",
+                        labelStyle: TextStyle(
+                          color: Colors.white,
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -109,17 +153,20 @@ class _QuadradoState extends State<VelocidadeMedia> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  var s = double.tryParse(_PrimeiroController.text);
-                  var t = double.tryParse(_SegundoController.text);
-                  var vm = s! / t!;
+                  var patm = double.tryParse(_PrimeiroController.text);
+                  var p = double.tryParse(_SegundoController.text);
+                  var g = double.tryParse(_TerceiroController.text);
+                  var h = double.tryParse(_QuartoController.text);
+                  var aux = p! * g! * h!;
+                  var Pt = patm! + aux;
                   showDialog(
                     context: context,
                     builder: (context) {
                       return AlertDialog(
-                        title: Text('Resolução Velocidade média\n'),
-                        content: Text("Vm = Δs / Δt\n"
-                            "Vm = ${s} . ${t}\n"
-                            'Vm = ${vm}\n'
+                        title: Text('Resolução pressão total\n'),
+                        content: Text("Pt = Patm + ρ . g . h\n"
+                            "Pt = ${patm} . ${p} . ${g} . ${h}\n"
+                            'Pt = ${Pt}\n'
                         ),
                       );
                     },

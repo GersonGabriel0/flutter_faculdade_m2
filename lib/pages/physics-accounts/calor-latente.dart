@@ -109,8 +109,8 @@ class _QuadradoState extends State<CalorLatente> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  var m = int.tryParse(_PrimeiroController.text);
-                  var l = int.tryParse(_SegundoController.text);
+                  var m = double.tryParse(_PrimeiroController.text);
+                  var l = double.tryParse(_SegundoController.text);
                   var q = m! * l!;
                   showDialog(
                     context: context,

@@ -6,6 +6,10 @@ import 'package:flutter_faculdade_m2/pages/math-accounts/quadrado.dart';
 import 'package:flutter_faculdade_m2/pages/math-accounts/retangulo.dart';
 import 'package:flutter/material.dart';
 
+
+
+
+
 class mathHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -113,6 +117,7 @@ class mathHome extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: const <Widget>[
                     Text("Quadrado", style: TextStyle(fontSize: 17.0)),
+
                   ],
                 ),
               ),
@@ -144,7 +149,7 @@ class mathHome extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => bhaskara()),
+                  MaterialPageRoute(builder: (context) => Retangulo()),
                 );
               },
               splashColor: Colors.blue,
@@ -152,7 +157,7 @@ class mathHome extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: const <Widget>[
-                    Text("Bhaskara", style: TextStyle(fontSize: 17.0)),
+                    Text("Retangulo", style: TextStyle(fontSize: 17.0)),
                   ],
                 ),
               ),
